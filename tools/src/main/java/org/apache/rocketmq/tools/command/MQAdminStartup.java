@@ -23,8 +23,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
-import org.apache.commons.cli.PosixParser;
 import org.apache.rocketmq.acl.common.AclUtils;
 import org.apache.rocketmq.common.MQVersion;
 import org.apache.rocketmq.common.MixAll;
@@ -105,7 +105,7 @@ import org.apache.rocketmq.tools.command.topic.UpdateTopicSubCommand;
 import org.slf4j.LoggerFactory;
 
 public class MQAdminStartup {
-    protected static final List<SubCommand> SUB_COMMANDS = new ArrayList<SubCommand>();
+    protected static final List<SubCommand> SUB_COMMANDS = new ArrayList<>();
 
     private static final String ROCKETMQ_HOME = System.getProperty(MixAll.ROCKETMQ_HOME_PROPERTY,
         System.getenv(MixAll.ROCKETMQ_HOME_ENV));
@@ -150,7 +150,7 @@ public class MQAdminStartup {
                         Options options = ServerUtil.buildCommandlineOptions(new Options());
                         final CommandLine commandLine =
                             ServerUtil.parseCmdLine("mqadmin " + cmd.commandName(), subargs, cmd.buildCommandlineOptions(options),
-                                new PosixParser());
+                                new DefaultParser());
                         if (null == commandLine) {
                             return;
                         }
